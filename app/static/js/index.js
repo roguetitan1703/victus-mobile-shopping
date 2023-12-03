@@ -134,3 +134,8 @@ $(document).ready(function(){
 
 
 });
+
+let btn  = document.querySelector("#add_cart")
+btn.addEventListener("click", () =>{
+    console.log("button clicked")
+})
