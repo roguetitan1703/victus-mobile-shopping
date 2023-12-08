@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MIT Mobile Shopping - Sign Up</title>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="../static/css/style.css">
+
+  <style>
+    .card {
+      border-radius: 0;
+      box-shadow: 0 0 10px #ccc;
+    }
+
+    .card-title {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-control {
+      border-radius: 0;
+      height: 40px;
+    }
+
+    .btn-primary {
+      border-radius: 0;
+      background-color: #003859;
+      color: #fff;
+      font-size: 16px;
+      height: 40px;
+    }
+
+    .btn-primary:hover {
+      background-color: #00A5C4;
+    }
+  </style>
+</head>
+
+<body>
+
+  <section id="signup" class="container py-5">
+    <div class="row">
+      <div class="col-sm-6 offset-sm-3">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title text-center font-baloo">Sign Up</h5>
+            <form id="signupForm" action="/signup" method="POST">
+              <div class="form-group">
+                <label for="customerName" class="font-rubik">Name:</label>
+                <input type="text" class="form-control" id="customerName" name="customerName" required>
+              </div>
+              <div class="form-group">
+                <label for="email" class="font-rubik">Email:</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+              </div>
+              <div class="form-group">
+                <label for="phoneNumber" class="font-rubik">Phone Number:</label>
+                <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" required>
+              </div>
+              <div class="form-group">
+                <label for="password" class="font-rubik">Password:</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+              </div>
+              <button type="submit" class="btn btn-primary btn-block font-rubik">Sign Up</button>
+              <div class="text-muted text-center mt-3">
+                Already have an account? <a href="/login_page">Log In</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+      integrity="sha384-O6s3KuNF6lZuI91Yq0F9YlIl9NpP9b3pbFxEz0RF+1f4WgLE4NLS3xqcoG2X5C1"
+      crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD"
+      crossorigin="anonymous"></script>
+
+    <script>
+    $(document).ready(function() {
+      $("#signupForm").submit(function(event) {
+        event.preventDefault();
+
+        // Extract form data
+        const customerName = $("#customerName").val();
+        const email = $("#email").val();
+        const phoneNumber = $("#phoneNumber").val();
+        const password = $("#password").val();
+
+        // Make an AJAX request to the /signup endpoint
+        $.ajax({
+          type: "POST",
+          url: "/signup",
+          data: $.param({
+            customerName: $("#customerName").val(), // Extract value from form element
+            email: $("#email").val(),
+            phoneNumber: $("#phoneNumber").val(), // Extract value from form element
+            password: $("#password").val()
+          }),
+          contentType: "application/x-www-form-urlencoded",
+          success: function(response) {
+            // Handle the response from the server, e.g., redirect to another page
+            window.location.href = "/"; // Redirect to the home page
+          },
+          error: function(error) {
+            // Handle the error, e.g., display an error message
+            console.error("Error:", error);
+          }
+        });
+      });
+    });
+    </script>
+
+  </body>
+
+  </html>

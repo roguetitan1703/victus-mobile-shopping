@@ -1,5 +1,73 @@
-$(document).ready(function(){
+// Define addToCart function
+function addToCart() {
+    const productId = $("#addtoCartForm input[name='productId']").val();
 
+    const requestBody = {
+        productId
+    };
+
+    $.ajax({
+        type: "POST",
+        url: "/addtocart",
+        data: JSON.stringify(requestBody),
+        contentType: "application/json",
+        success: function (response) {
+            // Log the server's response to the console
+            console.log("Server Response:", response);
+
+            // Update the button appearance or provide feedback as needed
+            $("#addToCart").addClass("added-to-cart");
+            $("#addToCart").text("Added to Cart");
+            $("#addToCart").prop("disabled", true); // Disable the button
+        },
+        error: function (error) {
+            // Handle the error, e.g., display an error message
+            console.error("Error:", error);
+
+            // You can still update the button appearance here if needed
+            $("#addToCart").addClass("error");
+            $("#addToCart").text("Error Adding to Cart");
+        }
+    });
+}
+
+// Checkout
+document.addEventListener('DOMContentLoaded', function () {
+    // Wait for the DOM to be fully loaded
+
+    // Find the "Proceed to Buy" button
+    var proceedToBuyBtn = document.getElementById('proceedToBuyBtn');
+
+    // Check if the cart is empty
+    var isCartFull = Math.min(document.getElementById('cartTotalQty'),1)
+
+    if (isCartFull) {
+        // Change the label of the button
+        proceedToBuyBtn.innerText = 'Go Back to Home';
+
+        // Display a message
+        var message = document.createElement('p');
+        message.innerText = 'There are no items in your cart.';
+        document.body.appendChild(message);
+
+        // Attach a click event listener to the button for redirection to the home page
+        proceedToBuyBtn.addEventListener('click', function () {
+            // Redirect the user to the home page
+            window.location.href = '/index';
+        });
+    } else {
+        // Attach a click event listener to the button for proceeding to buy
+        proceedToBuyBtn.addEventListener('click', function () {
+            // Redirect the user to the "/checkout" endpoint
+            window.location.href = '/checkout';
+        });
+    }
+});
+
+$(document).ready(function(){
+    // Add to cart function
+    $("#addToCart").click(addToCart);
+    
     // banner owl carousel
     $("#banner-area .owl-carousel").owlCarousel({
         dots: true,
@@ -131,11 +199,4 @@ $(document).ready(function(){
 
             }}); // closing ajax request
     }); // closing qty down button
-
-
 });
-
-let btn  = document.querySelector("#add_cart")
-btn.addEventListener("click", () =>{
-    console.log("button clicked")
-})

@@ -60,6 +60,18 @@ button, button:focus {
   background: #FFD289;
 }
 
+.added-to-cart {
+  background-color: green; /* Change the background color to green */
+  color: white; /* Change the text color to white */
+  cursor: not-allowed; /* Optional: Change the cursor to indicate that the button is not clickable */
+  pointer-events: none; /* Make the button unclickable */
+}
+
+.added-to-cart:hover {
+  background-color: rgb(0, 107, 0); /* Change the hover background color */
+}
+
+
 /*  top sale template   */
 #top-sale .owl-carousel .item .product a {
   overflow: hidden;
@@ -100,4 +112,6 @@ button, button:focus {
   margin-top: 1rem;
 }
 
+
 /*# sourceMappingURL=style.css.map */
+

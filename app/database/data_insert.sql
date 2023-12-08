@@ -27,7 +27,24 @@ DELIMITER ;
 
 DELIMITER //
 
-CREATE PROCEDURE InsertProducts()
+CREATE PROCEDURE InsertProducts()    INSERT INTO Seller (seller_id, seller_name, email, phone_number, password_hash)
+    VALUES
+        (1, 'TechGiant Corp', 'techgiant@techgiant.com', '+911234567890', 'techgiantpassword'),
+        (2, 'ElectroTech Solutions', 'electrotech@electrotech.com', '+911234567891', 'electrotechpassword'),
+        (3, 'Innovate Electronics Ltd.', 'innovate@innovate.com', '+911234567892', 'innovatepassword'),
+        (4, 'FutureDevices Inc.', 'futuredevices@futuredevices.com', '+911234567893', 'futuredevicespassword'),
+        (5, 'SmartTech Innovations', 'smarttech@smarttech.com', '+911234567894', 'smarttechpassword'),
+        (6, 'Digital Dynamics Co.', 'digitaldynamics@digitaldynamics.com', '+911234567895', 'digitaldynamicspassword'),
+        (7, 'TechSavvy Solutions', 'techsavvy@techsavvy.com', '+911234567896', 'techsavvypassword'),
+        (8, 'Infinite Innovations Ltd.', 'infinite@infinite.com', '+911234567897', 'infinitepassword'),
+        (9, 'TechMarvel Corp', 'techmarvel@techmarvel.com', '+911234567898', 'techmarvelpassword'),
+        (10, 'Epic Electronics Enterprises', 'epicelectronics@epicelectronics.com', '+911234567899', 'epicelectronicspassword'),
+        (11, 'FutureTech Innovations', 'futuretech@futuretech.com', '+911234567890', 'futuretechpassword'),
+        (12, 'Quantum Electronics Inc.', 'quantumelectronics@quantumelectronics.com', '+911234567891', 'quantumelectronicspassword'),
+        (13, 'InnoTech Solutions', 'innotech@innotech.com', '+911234567892', 'innotechpassword'),
+        (14, 'Visionary Tech Co.', 'visionarytech@visionarytech.com', '+911234567893', 'visionarytechpassword'),
+        (15, 'Global Electronics Group', 'globalelectronics@globalelectronics.com', '+911234567894', 'globalelectronicspassword');
+END //
 BEGIN
     -- Add 50 Products to the Product Table Linked to the 15 Sellers (Electronics Category)
     -- Prices are in Indian Rupees (INR)

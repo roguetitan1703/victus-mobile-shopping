@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MIT Mobile Shopping - Log In</title>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="../static/css/style.css">
+
+  <style>
+    .card {
+      border-radius: 0;
+      box-shadow: 0 0 10px #ccc;
+    }
+
+    .card-title {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-control {
+      border-radius: 0;
+      height: 40px;
+    }
+
+    .btn-primary {
+      border-radius: 0;
+      background-color: #003859;
+      color: #fff;
+      font-size: 16px;
+      height: 40px;
+    }
+
+    .btn-primary:hover {
+      background-color: #00A5C4;
+    }
+
+    .text-muted {
+      color: #ccc;
+    }
+  </style>
+</head>
+
+<body>
+
+  <section id="login" class="container py-5">
+    <div class="row">
+      <div class="col-sm-6 offset-sm-3">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title text-center font-baloo">Log In</h5>
+            <form id="loginForm" action="/login" method="POST">
+              <div class="form-group">
+                <label for="email" class="font-rubik">Email:</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+              </div>
+              <div class="form-group">
+                <label for="password" class="font-rubik">Password:</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+              </div>
+              <button type="submit" class="btn btn-primary btn-block font-rubik">Log In</button>
+              <div class="text-muted text-center mt-3">
+                Don't have an account? <a href="/signup_page">Create Account</a>
+              </div>
+            </form>
+          </div>  
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <script>
+    $(document).ready(function() {
+      $("#loginForm").submit(function(event) {
+        event.preventDefault();
+
+        // Extract form data
+        const email = $("#email").val();
+        const password = $("#password").val();
+
+        // Make an AJAX request to the /login endpoint
+        $.ajax({
+          type: "POST",
+          url: "/login",
+          data: $.param({
+            email: $("#email").val(),
+            password: $("#password").val()
+          }),
+          contentType: "application/x-www-form-urlencoded",
+          success: function(response) {
+            // Handle the response from the server, e.g., redirect to another page
+            window.location.href = "/"; // Redirect to the home page
+          },
+          error: function(error) {
+            // Handle the error, e.g., display an error message
+            console.error("Error:", error);
+          }
+        });
+      }); 
+    });
+  </script>
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+crossorigin="anonymous"></script>
