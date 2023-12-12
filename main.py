@@ -8,7 +8,6 @@ from io import BytesIO
 from datetime import datetime
 import tempfile
 
-
 app = FastAPI()
 customerId = 1
 
@@ -100,11 +99,6 @@ async def cart(request: Request, db: mysql.connector.MySQLConnection = Depends(g
     return templates.TemplateResponse("cart.html", {"request": request, "cart_items": cart_items, "total": total, "total_qty": total_qty})
 
 
-import tempfile
-from fastapi.responses import FileResponse
-from io import BytesIO
-from reportlab.pdfgen import canvas
-from datetime import datetime
 
 @app.get("/checkout")
 async def checkout(db: mysql.connector.MySQLConnection = Depends(get_db)):
