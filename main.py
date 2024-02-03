@@ -6,7 +6,8 @@ import mysql.connector
 from reportlab.pdfgen import canvas
 from io import BytesIO
 from datetime import datetime
-import tempfile
+import tempfile, os
+from os.path import join, dirname
 
 app = FastAPI()
 customerId = 1
@@ -70,10 +71,25 @@ async def test(request: Request):
 async def test2(request: Request):
     return templates.TemplateResponse("test2.html", {"request": request})
 
-@app.get('/index/', response_class=HTMLResponse)
+@app.get('/index', response_class=HTMLResponse)
 async def index(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
+@app.get("/get-template")
+async def get_template(template_name: str):
+    try:
+        # Construct the file path based on the requested template name
+        file_path = join(dirname(__file__), "templates", template_name)
+        
+        # Check if the file exists
+        if not os.path.exists(file_path):
+            raise HTTPException(status_code=404, detail="Template not found")
+        
+        # Return the HTML file as a response
+        return FileResponse(file_path, media_type="text/html")
+    except Exception as e:
+        # Handle any errors
+        return JSONResponse(content={"error": str(e)}, status_code=500)
 
 @app.get('/cart', response_class=HTMLResponse)
 async def cart(request: Request, db: mysql.connector.MySQLConnection = Depends(get_db)):

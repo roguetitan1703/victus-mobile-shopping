@@ -31,9 +31,44 @@ function addToCart() {
     });
 }
 
+function fillContainers() {
+    // Function to fetch HTML content from endpoint
+    async function fetchTemplate(templateName) {
+        try {
+            const response = await fetch(`/get-template?template_name=${templateName}`);
+            if (!response.ok) {
+                throw new Error('Failed to fetch template');
+            }
+            return await response.text();
+        } catch (error) {
+            console.error('Error fetching template:', error);
+            return ''; // Return empty string if fetching fails
+        }
+    }
+
+    // Function to fill container with HTML content
+    async function fillContainer(containerId, templateName) {
+        const container = document.querySelector(`#${containerId}`);
+        if (!container) {
+            console.error(`Container with id ${containerId} not found`);
+            return;
+        }
+
+        const template = await fetchTemplate(templateName);
+        container.innerHTML = template;
+    }
+
+    // Fill containers with respective HTML content
+    fillContainer('top_sale', 'top_sale.html');
+    fillContainer('special_price', 'special_price.html');
+}
+
+// Call the function to fill containers when the document is loaded
+
 // Checkout
 document.addEventListener('DOMContentLoaded', function () {
     // Wait for the DOM to be fully loaded
+    fillContainers();
 
     // Find the "Proceed to Buy" button
     var proceedToBuyBtn = document.getElementById('proceedToBuyBtn');
