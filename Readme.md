@@ -1,6 +1,6 @@
 ---
 
-# 🛒 MIT Mobile Shopping
+# 🛒 VICTUS Mobile Shopping
 
 ## 📝 Description
 
