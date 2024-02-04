@@ -41,6 +41,18 @@ MIT Mobile Shopping is an e-commerce platform for purchasing electronic products
 4. **View Cart:** Click on the cart icon to view the items added to the cart.
 5. **Checkout:** Proceed to checkout to generate a PDF invoice for the items in the cart.
 
+## Libraries and Frameworks Used
+
+### Libraries
+- FastAPI
+- MySQL
+- Jinja2Templates
+- ReportLab
+
+### Frameworks
+- Bootstrap
+- Owl Carousel
+
 ## 📄 License
 
 This project is licensed under the [MIT License](LICENSE).
