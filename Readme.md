@@ -44,13 +44,13 @@ MIT Mobile Shopping is an e-commerce platform for purchasing electronic products
 ## Libraries and Frameworks Used
 
 ### Libraries
-- FastAPI
 - MySQL
 - Jinja2Templates
 - ReportLab
 
 ### Frameworks
 - Bootstrap
+- FastAPI
 - Owl Carousel
 
 ## 📄 License
